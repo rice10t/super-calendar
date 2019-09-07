@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "es6",
+    "lib": [
+      "dom",
+      "es6"
+    ]
+  }
+}
