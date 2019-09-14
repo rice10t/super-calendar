@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "parcel index.html --port 8000",
     "build": "parcel build index.html",
-    "format": "prettier --write \"src/**/*.{ts, tsx,css}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
