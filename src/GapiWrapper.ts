@@ -30,18 +30,27 @@ export class GapiWrapper {
   add30Minutes(events: Event[]) {
     const batch = this.gapi.client.newBatch();
 
-    const eventIds = events
-      .map(event => event.id)
-      .filter((eventId): eventId is string => eventId !== undefined);
+    events
+      .filter(event => event.start !== undefined)
+      .map(event => {
 
-    const requests = eventIds.map(eventId => {
-      return this.gapi.client.calendar.events.patch({
-        calendarId: "",
-        eventId: eventId
+        const start = event.start.date ? {
+          date: event.start.date
+        } : {};
+
+        return this.gapi.client.request({
+          path: `calendar/v3/calendars/primary/events/${event.id}`
+          // body: {
+          //   start,
+          // }
+        });
+      })
+      .forEach(req => {
+        batch.add(req);
       });
-    });
 
-    return batch.add(requests)
+
+    return batch
       .then((a) => console.log(a))
       .catch(e => console.log(e));
   }
