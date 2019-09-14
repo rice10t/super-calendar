@@ -14,7 +14,7 @@ export const useGapi = (): State => {
     const CLIENT_ID = "259142840372-7101o4dq66rhel7sk58u6escaj8ktt6g.apps.googleusercontent.com";
     const API_KEY = "AIzaSyDsoJbu1sdSsm6WqhMc4hGBV49Q-kVedOg";
     const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-    const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+    const SCOPES = "https://www.googleapis.com/auth/calendar";
 
     const initClient = () => {
       window.gapi.client.init({
