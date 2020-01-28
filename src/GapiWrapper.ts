@@ -4,7 +4,8 @@ import Event = gapi.client.calendar.Event
 import EventDateTime = gapi.client.calendar.EventDateTime
 
 export class GapiWrapper {
-  constructor(private gapi: any) {}
+  constructor(private gapi: any) {
+  }
 
   isSignedIn(): boolean {
     return this.gapi.auth2.getAuthInstance().isSignedIn.get()
@@ -18,7 +19,7 @@ export class GapiWrapper {
     this.gapi.auth2.getAuthInstance().signOut()
   }
 
-  eventsList() {
+  upcomingEvents() {
     return this.gapi.client.calendar.events.list({
       calendarId: "primary",
       timeMin: new Date().toISOString(),
@@ -29,16 +30,25 @@ export class GapiWrapper {
     })
   }
 
+  todayEvents() {
+    return this.gapi.client.calendar.events.list({
+      calendarId: "primary",
+      timeMin: new Date().toISOString(),
+      singleEvents: true,
+      orderBy: "startTime",
+    })
+  }
+
   add30Minutes(events: Event[]) {
     const add30MinutesAndFormatWithTimeZone: (dateTime: string) => string = flow(
       parseISO,
       addMinutes(30),
-      format("yyyy-MM-dd'T'HH:mm:ssxxx")
+      format("yyyy-MM-dd'T'HH:mm:ssxxx"),
     )
     const add30MinutesAndFormatWithoutTimeZone: (dateTime: string) => string = flow(
       parseISO,
       addMinutes(30),
-      format("yyyy-MM-dd'T'HH:mm:ss")
+      format("yyyy-MM-dd'T'HH:mm:ss"),
     )
 
     const batch = this.gapi.client.newBatch()

@@ -1,0 +1,41 @@
+.root {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.times {
+}
+
+.timeContainer {
+  height: 51px;
+  width: 50px;
+}
+
+.time {
+  position: relative;
+  top: -6px;
+  font-size: 12px;
+}
+
+.eventsContainer {
+  position: relative;
+  width: 600px;
+  height: calc(51px * 24);
+}
+
+.lines {
+  position: absolute;
+  border-top: 1px solid #cfcfcf;
+}
+
+.line {
+  border-bottom: 1px solid #cfcfcf;
+  height: 50px;
+  width: 600px;
+}
+
+.event {
+  position: absolute;
+  width: 200px;
+  border: 1px solid black;
+}
