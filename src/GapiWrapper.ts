@@ -1,4 +1,5 @@
-import { parseISO, addMinutes, format } from "date-fns/fp"
+import { addMinutes, format, parseISO } from "date-fns/fp"
+import { endOfToday, formatRFC3339,startOfToday } from "date-fns"
 import flow from "lodash/fp/flow"
 import Event = gapi.client.calendar.Event
 import EventDateTime = gapi.client.calendar.EventDateTime
@@ -33,7 +34,8 @@ export class GapiWrapper {
   todayEvents() {
     return this.gapi.client.calendar.events.list({
       calendarId: "primary",
-      timeMin: new Date().toISOString(),
+      timeMin: formatRFC3339(startOfToday()),
+      timeMax: formatRFC3339(endOfToday()),
       singleEvents: true,
       orderBy: "startTime",
     })

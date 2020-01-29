@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+import { differenceInMinutes, format, getHours, getMinutes, parseISO } from "date-fns/fp"
 import styles from "./CalendarBody.css"
 import Event = gapi.client.calendar.Event
 
@@ -11,14 +12,21 @@ const Time: FC = ({ children }) => {
 }
 
 const CalendarEvent: FC<{ event: Event }> = (props) => {
-  // const start = props.event.start?.dateTime
-  // const top = start *
+  const startDateTime = props.event.start?.dateTime || ""
+  const endDateTime = props.event.end?.dateTime || ""
+  const start = parseISO(startDateTime)
+  const end = parseISO(endDateTime)
+
+  const startAsMinutes = getHours(start) * 60 + getMinutes(start)
+  const top = startAsMinutes / 5 * 5
+  const height = differenceInMinutes(start, end) / 5 * 5
 
   return (
     <div className={styles.event} style={{
-      top: top + "px"
+      top: top + "px",
+      height: (height > 20 ? height : 20) + "px",
     }}>
-      {props.event.summary}
+      {props.event.summary + " " + format("HH:mm", start) + "～" + format("HH:mm", end)}
     </div>
   )
 }

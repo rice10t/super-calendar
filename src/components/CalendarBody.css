@@ -7,7 +7,7 @@
 }
 
 .timeContainer {
-  height: 51px;
+  height: 60px;
   width: 50px;
 }
 
@@ -20,7 +20,7 @@
 .eventsContainer {
   position: relative;
   width: 600px;
-  height: calc(51px * 24);
+  height: calc(60px * 24);
 }
 
 .lines {
@@ -30,7 +30,7 @@
 
 .line {
   border-bottom: 1px solid #cfcfcf;
-  height: 50px;
+  height: 59px;
   width: 600px;
 }
 

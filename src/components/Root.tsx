@@ -84,13 +84,13 @@ export const Root = () => {
             <br/>
           </div>)
           : "No upcoming events found."}
-
-        {state.todaysEvents && state.todaysEvents.length > 0 ? (
-          <Calendar events={state.todaysEvents}/>
-        ) : (
-          "hogehoge"
-        )}
       </pre>
+
+      {state.todaysEvents && state.todaysEvents.length > 0 ? (
+        <Calendar events={state.todaysEvents}/>
+      ) : (
+        "Loading..."
+      )}
     </div>
   )
 }
